@@ -21,5 +21,8 @@ int main()
         }
         count++;
     }
+    system("pause");
     return 0;
+    
+
 }

@@ -108,6 +108,8 @@ int main()
         t.display(board);
         cout << "It's a tie!" << endl;
     }
-
+    system("pause");
     return 0;
+    
+
 }
