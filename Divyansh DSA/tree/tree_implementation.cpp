@@ -16,6 +16,94 @@ public:
     }
 };
 
+bool solve(treenode *r1, treenode *r2)
+{
+    if (r1 == NULL && r2 == NULL)
+        return true;
+
+    if (r1 == NULL || r2 == NULL)
+        return false;
+
+    bool lefti = solve(r1->l, r2->l);
+    bool righti = solve(r1->r, r2->r);
+
+    if ((r1->data == r2->data) && lefti && righti)
+        return true;
+    else
+    {
+        return false;
+    }
+}
+
+bool isIdentical(treenode *r1, treenode *r2)
+{
+    return solve(r1, r2);
+}
+
+treenode *buildTree(string str)
+{
+    if (str.length() == 0 || str[0] == 'N')
+        return nullptr;
+
+    vector<string> ip;
+
+    istringstream iss(str);
+    for (string str; iss >> str;)
+        ip.push_back(str);
+
+    treenode *root = new treenode(stoi(ip[0]));
+
+    queue<treenode *> queue;
+    queue.push(root);
+
+    int i = 1;
+    while (!queue.empty() && i < ip.size())
+    {
+        treenode *currNode = queue.front();
+        queue.pop();
+
+        string currVal = ip[i];
+
+        if (currVal != "N")
+        {
+            currNode->l = new treenode(stoi(currVal));
+
+            queue.push(currNode->l);
+        }
+
+        i++;
+        if (i >= ip.size())
+            break;
+        currVal = ip[i];
+
+        if (currVal != "N")
+        {
+            currNode->r = new treenode(stoi(currVal));
+            queue.push(currNode->r);
+        }
+        i++;
+    }
+
+    return root;
+}
+treenode *buildTree(treenode *root)
+{
+    cout << "Enter the data for node: ";
+    int data;
+    cin >> data;
+    root = new treenode(data);
+
+    if (data == -1)
+        return nullptr;
+
+    cout << "Enter data for left of " << root->data << " :";
+    root->l = buildTree(root->l);
+    cout << "Enter data for right of " << root->data << " :";
+    root->r = buildTree(root->r);
+
+    return root;
+}
+
 void preorder_traversal(treenode *root)
 {
     if (root == nullptr)
@@ -133,21 +221,18 @@ int main()
     postorder_traversal(root);
     cout << endl;
     cout << level(root) << endl;
-    cout << "----------------------------------------------------------";
-    root1 = insertion(root1, 1);
-    root1 = insertion(root1, 5);
-    root1 = insertion(root1, 2);
-    root1 = insertion(root1, 3);
-    root1 = insertion(root1, 4);
-    root1 = insertion(root1, 6);
-    cout << endl;
-    postorder_traversal(root1);
-    cout << endl;
-    cout << "----------------------------------------------------------";
-    cout << endl;
-    root1 = deletion(root1, 3);
-    root1 = deletion(root1, 6);
-    postorder_traversal(root1);
+    cout << "----------------------------------------------------------" << endl;
 
+    string str = "1 2 3 4 N N 5 N N 6 7";
+    treenode *newRoot = nullptr;
+    newRoot = buildTree(newRoot);
+
+    treenode *freshNode = buildTree(str);
+
+    preorder_traversal(newRoot);
+    cout << endl;
+    cout << "----------------------------------------------------------" << endl;
+    preorder_traversal(freshNode);
+    cout << endl;
     return 0;
 }
