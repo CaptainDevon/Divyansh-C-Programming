@@ -36,7 +36,7 @@ class Graph
 int main()
 {
     Graph g(5);
-    //ading edges of the graph
+    //adding edges of the graph
     g.addEdge(0, 1);
     g.addEdge(0, 4);
     g.addEdge(1, 2);
