@@ -40,5 +40,41 @@ A)1)JOIN NOTES:
     objects destructor it will terminate the program. Because inside destructor it checks 
     it checks fi thread is still joinable or not? if yes program terminates
 
-    
+
+
+
+MUTEX In c++ THreading 
+
+MUTEX-->Mutual Exclusion
+
+It is used for doing following things:
+1)Race Condition:
+  -->Race Condition is a situation where two or more thread/process happend to change a common 
+     data at the same time 
+
+  -->If there is any race condition then we have to protect it and that protected section is 
+     calles critical section
+ 2)We use lock(), unlock() on mutex to avoid race condition
+
+
+
+std::mutex::try_lock()
+
+-->try_lock() tries to lock the mutex. Returns immediatly. on sucessful lock acquisition returns 
+   otherwise return false
+-->If try_lock() is not abel to lock the mutex ,then it doesnt get blocked : hence it is called as non-blocking
+-->If try_lock() is called again by the same thread which owns the mutex, the behaviour is undefined 
+    **This situation is called as the dead lock**
+
+There are total 9 try_lock() functions
+1. std::try_lock
+2. std::mutex::try_lock
+3. std::shared_lock::try_lock
+4. std::timed_mutex::try_lock
+5. std::unique_lock::try_lock
+6. std::shared_mutex::try_lock
+7. std::recursive_mutex::try_lock
+8. std::shared_timed_mutex::try_lock
+9. srd::recursive_timed_mutex::try_lock
+
 
