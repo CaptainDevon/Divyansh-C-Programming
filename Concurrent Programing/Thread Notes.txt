@@ -71,10 +71,84 @@ There are total 9 try_lock() functions
 2. std::mutex::try_lock
 3. std::shared_lock::try_lock
 4. std::timed_mutex::try_lock
+    std::timed_mutex is blocked till timeout_time or the lock is aquired and returns true if sucess
+    otherwise false.
+
+    Its member functions are 
+    1)lock
+    2)try_lock
+    3)try_lock_for
+    4)try_lock_until
+    5)unlock
+
+
+    std::try_lock_for 
+    -->waits untill specified timeout duration has elapsed or the lock is aquired, whichever comes first
+    -->returns true false
+
+
 5. std::unique_lock::try_lock
+
+    std::unique_lock<mutex>lock(m1)
+
+    1)The class unique_lock is the ownership wrapper
+    2)It allows:
+      -->different locking strategies 
+      -->time constrained attempts at locking (try_lock_for,try_lock_until)
+      -->recursive locking
+      -->transfer of lock ownership
+      -->condition variables
+
+          Used for two purposes:
+          A)Notify other threads
+          B)Waiting for some condition
+          C)synchronize two or more threads
+          D)best use case is producer/consumer problem
+
+          1)Condition variable allows running threads to wait on some condition and once those 
+            conditions are mt thread is notified using 
+            -->notify_one();
+            -->notify_all();
+          2)Required mutex to use condition variable
+          3)If some thread want to wait on some condition then it has to fo these things;
+            -->acquire mutex lock
+            -->execute wait,wait_for,wait_untill  [wait operation release the mutex and suspent the thread execution]
+            -->when condition variable is notified , the thread is awakened and mutex is reacquired automatically
+               The thread should then check the condition and resume waiting if wake up was spurious
+
+
+
+    Locking strategies:
+    1)defer_lock  : Doesn't acquire ownership of the mutex
+    2)try_to_lock : try to acquire ownership of mutex without blocking
+    3)adopt_lock  : assume the calling thread already has ownership of the mutex
+
+
 6. std::shared_mutex::try_lock
 7. std::recursive_mutex::try_lock
+
+    1) It is same as mutex but in this the same thread can lock one mutex multiple times 
+    2) Suppose if a thread t1 calls lock/try_lock() on recursive mutex m1 , then m1 is locked by t1
+       now when t1 is running in recursion it can call m1 as many time as it wants during recursion process 
+    3) Suppose t1 calls m1 10 times then it must be unlocked 10 time so hat other threads can acquire the lock 
+       In short the recursive mutex keeps the count of the loock aquired by the same thread
+    4) In general there is no limit defined for the recursive call but if it is defined and limit reaches we get error
+       or the lock is aquired 
+    5) it can be used in loops
+
+
 8. std::shared_timed_mutex::try_lock
 9. srd::recursive_timed_mutex::try_lock
+
+
+Lock Guard in c++
+std::lock_guard<mutex> lock(m1)
+1)It is very light weight  wrapper for owning mutex on scoped basis
+2)It aquires mutex lock the moment you create the lock guard object 
+3)It automatically removes the lock while goes out of the scope 
+4)You cannot explicitly unlock the lock the lock guard 
+5)You cannot copy the lock guard
+
+
 
 
