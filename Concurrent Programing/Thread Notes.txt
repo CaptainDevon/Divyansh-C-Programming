@@ -152,3 +152,37 @@ std::lock_guard<mutex> lock(m1)
 
 
 
+std::future and std::promise in threading 
+
+1)std::promise 
+    -->used to set values or exceptions
+2)std::future
+    -->fetches values from promise
+    -->asks promise if value is available or not
+    -->wait for the promise
+
+
+std::async
+
+1) It runs a functions asynchronously (potentially in a new thread) return 
+   std::future that will hold the result
+  
+2) There are three launch policies for creating task 
+    a)std::launch::async
+    b)std::launch::deffered
+    c)std::launch::async | std::launch::async
+
+
+-->HOW IT WORKS
+  --> It automaticall creates a thread (or picks from internal thread pool) 
+      and a promise object for us 
+
+  --> Then passes the std::promise object to thread function and returns the 
+      associated std::future object
+  
+  --> When our passed argument function exits then its value will be set in 
+      promise object sot return value will be available in the future object
+
+  -->we use unctor and lambda function as callback to async to std::async, it will
+     work the same
+
