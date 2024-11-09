@@ -1,7 +1,7 @@
 # C++ Learning Journey
 
 ## Overview
-Welcome to my C++ repository! This repository is a collection of my projects, exercises, and notes as I have progressed through learning C++. Here, you'll find my explorations into various aspects of the language, including Data Structures and Algorithms (DSA), the Standard Template Library (STL), Object-Oriented Programming (OOP), and fundamental concepts.
+Welcome to my C++ repository! This repository is a collection of my projects, exercises, and notes as I have progressed through learning C++. Here, you'll find my explorations into various aspects of the language, including Data Structures and Algorithms (DSA), the Standard Template Library (STL), Object-Oriented Programming (OOP), Concurrent Programming, and other fundamental concepts.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -9,9 +9,12 @@ Welcome to my C++ repository! This repository is a collection of my projects, ex
 - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
 - [Standard Template Library (STL)](#standard-template-library-stl)
 - [Data Structures and Algorithms (DSA)](#data-structures-and-algorithms-dsa)
+- [Concurrent Programming](#concurrent-programming)
+- [Projects](#projects)
+- [Conclusion](#conclusion)
 
 ## Introduction
-C++ is a powerful, high-performance programming language that is widely used for system/software development, game development, and in performance-critical applications. It is known for its versatility and efficiency, making it a popular choice among developers.
+C++ is a powerful, high-performance programming language widely used for system/software development, game development, and in performance-critical applications. It is known for its versatility and efficiency, making it a popular choice among developers.
 
 ## Fundamentals
 In this section, you will find my notes and examples covering the basics of C++ programming:
@@ -49,15 +52,23 @@ Understanding DSA is crucial for efficient problem-solving and optimizing code. 
 - Dynamic programming
 - Complexity analysis
 
+## Concurrent Programming
+This section covers the basics of concurrent programming in C++ using threads. Concurrent programming is essential for improving the performance of applications by enabling them to perform multiple tasks simultaneously. Topics include:
+- Introduction to threads
+- Creating and managing threads
+- Synchronization and locking mechanisms
+- Avoiding race conditions and deadlock
+- Using the `std::thread` library
+
+Folder: `Concurrent programming`
+
 ## Projects
 To apply what I've learned, I've built several projects that showcase my skills:
 - **Flight Management System**: A CLI-based application to manage flight reservations, built using OOP principles.
 
-  
 ## Conclusion
 C++ is a language that offers immense power and flexibility, and mastering it is a rewarding endeavor. This repository is a testament to my journey through the intricacies of C++ programming. I hope it serves as a helpful resource for others embarking on a similar path.
 
 Feel free to explore the repository and reach out if you have any questions or suggestions!
 
 Happy coding!
-
