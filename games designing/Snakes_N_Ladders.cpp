@@ -107,6 +107,7 @@ public:
                     break;
                 }
             }
+            system("pause");
             scoreDisplay();
             if (stopper == 1)
                 break;
