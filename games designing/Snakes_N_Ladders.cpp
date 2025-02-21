@@ -95,7 +95,6 @@ class Game:public Board
         while(true)
         {
             int stopper=0;
-            scoreDisplay();
             for(int i=0;i<players.size();i++)
             {
                 playTurn(i);
@@ -105,6 +104,7 @@ class Game:public Board
                     cout<<"player number "<<i+1<<" is the Winner!! congratulations..."<<endl;
                     break;
                 }
+                scoreDisplay();
             }
             if(stopper==1)break;
         }
